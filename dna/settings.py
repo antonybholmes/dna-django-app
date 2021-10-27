@@ -15,12 +15,13 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+config = json.load(open('settings.json', 'r'))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'an)xl6clrit(n=24i2nlk%jj#-4@8fq&n5&*rlf=qxa+49rxl-'
+SECRET_KEY = config["secret_key"]
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -123,9 +124,9 @@ ABOUT = {'name':'dna','version':'1.0','copyright':'Copyright (C) 2018-2019 Anton
 STATIC_URL = '/static/'
 
 
-DATA_DIR = '/ifs/scratch/cancer/Lab_RDF/abh2138/references/ucsc/assembly/2bit/' #'/mnt/data/genes'
+DATA_DIR = config["data_dir"] #'/mnt/data/genes'
 
-AWS_BUCKET = 'lab-rdf-app-data'
+AWS_BUCKET = config["aws_bucket"]
 
 GENOMES = [{'name':'human', 'assembly':'grch38', 'track':'ucsc'},
            {'name':'human', 'assembly':'hg19', 'track':'ucsc'},
